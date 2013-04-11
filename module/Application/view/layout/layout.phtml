@@ -1,0 +1,100 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('Aplicação Teste '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath() . '/css/style.css')
+                        ->prependStylesheet($this->basePath() . '/css/jquery.ui.menubar.css')						
+                        ->prependStylesheet($this->basePath() . '/css/redmond/jquery-ui-1.10.2.custom.css') ?>
+
+        <!-- Scripts -->
+        <?php echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                                      ->prependFile($this->basePath() . '/js/jquery.ui.menubar.js')
+                                      ->prependFile($this->basePath() . '/js/jquery-ui-1.10.2.custom.js')
+                                      ->prependFile($this->basePath() . '/js/jquery-1.9.1.js') ?>
+
+	<script>
+		$(function() {
+			function onSelect(event, ui) {
+				//$("<div/>").text("Selected: " + ui.item.text()).appendTo("#log");
+				alert( "Item Selecionado: " + ui.item.text() );
+				if (ui.item.text() == 'Quit') {
+					$(this).menubar('destroy');
+				}
+			}
+			$("#bar1").menubar({
+				position: {
+					within: $("#navegacao").add(window).first()
+				},
+				select: onSelect
+			});
+	
+		});
+	</script>
+    </head>
+    <body>
+        <div id="navegacao">
+            <ul id="bar1" class="menubar">
+                <li><a href="#About">About</a></li>
+                <li>
+                    <a href="#File">File</a>
+                    <ul>
+                        <li><a href="#Open...">Open...</a></li>
+                        <li class="ui-state-disabled"><a href="#">Open recent...</a></li>
+                        <li><a href="#Save">Save</a></li>
+                        <li><a href="#Save%20as...">Save as...</a></li>
+                        <li><a href="#Close">Close</a></li>
+                        <li><a href="#Quit">Quit</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#Edit">Edit</a>
+                    <ul>
+                        <li><a href="#Copy">Copy</a></li>
+                        <li><a href="#Cut">Cut</a></li>
+                        <li class="ui-state-disabled"><a href="#">Paste</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#View">View</a>
+                    <ul>
+                        <li><a href="#Fullscreen">Fullscreen</a></li>
+                        <li><a href="#Fit%20into%20view">Fit into view</a></li>
+                        <li>
+                            <a href="#Encoding">Encoding</a>
+                            <ul>
+                                <li><a href="#Auto-detect">Auto-detect</a></li>
+                                <li><a href="#UTF-8">UTF-8</a></li>
+                                <li>
+                                  <a href="#UTF-16">UTF-16</a>
+                                  <ul>
+                                     <li><a href="#Option%201">Option 1</a></li>
+                                     <li><a href="#Option%202">Option 2</a></li>
+                                     <li><a href="#Option%203">Option 3</a></li>
+                                     <li><a href="#Option%204">Option 4</a></li>
+                                  </ul>
+                               </li>
+                            </ul>
+                        </li>
+                        <li><a href="#Customize...">Customize...</a></li>
+                    </ul>
+                </li>
+            </ul>        
+        </div>
+        
+        <div class="container">
+            <?php echo $this->content; ?>
+            <hr>
+            <footer>
+                <p>&copy; 2005 - <?php echo date('Y') ?> by Business Team Ltda. <?php echo $this->translate('All rights reserved.') ?></p>
+            </footer>
+        </div> <!-- /container -->
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>
